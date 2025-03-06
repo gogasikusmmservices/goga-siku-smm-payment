@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Payment Method</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"], input[type="number"], input[type="email"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .info {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Payment Methods</h1>
+    <form action="/process_payment" method="POST">
+        <label for="amount">Amount</label>
+        <input type="number" id="amount" name="amount" placeholder="Enter the amount" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="payment_method">Select Payment Method</label>
+        <select id="payment_method" name="payment_method" required>
+            <option value="upi">UPI</option>
+            <option value="card">Credit/Debit Card</option>
+            <option value="net_banking">Net Banking</option>
+            <option value="wallet">Wallet</option>
+        </select>
+
+        <div id="upi_section" class="payment_method_section">
+            <label for="upi_id">UPI ID</label>
+            <input type="text" id="upi_id" name="upi_id" placeholder="Enter your UPI ID" required>
+        </div>
+
+        <div id="card_section" class="payment_method_section">
+            <label for="card_number">Card Number</label>
+            <input type="text" id="card_number" name="card_number" placeholder="Enter your card number" required>
+            <label for="expiry_date">Expiry Date</label>
+            <input type="text" id="expiry_date" name="expiry_date" placeholder="MM/YY" required>
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" name="cvv" placeholder="Enter CVV" required>
+        </div>
+
+        <div id="net_banking_section" class="payment_method_section">
+            <label for="bank">Select Bank</label>
+            <select id="bank" name="bank" required>
+                <option value="sbi">SBI</option>
+                <option value="icici">ICICI</option>
+                <option value="hdfc">HDFC</option>
+                <option value="axis">Axis</option>
+                <option value="pnb">PNB</option>
+            </select>
+        </div>
+
+        <div id="wallet_section" class="payment_method_section">
+            <label for="wallet">Select Wallet</label>
+            <select id="wallet" name="wallet" required>
+                <option value="paytm">Paytm</option>
+                <option value="googlepay">Google Pay</option>
+                <option value="phonepe">PhonePe</option>
+            </select>
+        </div>
+        <button onClick="window.location.href='C:/Users/jaygu/OneDrive/Desktop/payment_process.html';">  
+   Payment Now  
+</button>
+
+    </form>
+    <p class="info">
+        Note: This is just a demo. The actual payment processing requires backend integration with a payment gateway API.
+    </p>
+</div>
+
+<script>
+    document.getElementById("payment_method").addEventListener("change", function() {
+        let paymentMethod = this.value;
+        
+        // Hide all payment sections
+        let sections = document.querySelectorAll(".payment_method_section");
+        sections.forEach(section => section.style.display = "none");
+        
+        // Show the relevant payment section
+        if (paymentMethod === "upi") {
+            document.getElementById("upi_section").style.display = "block";
+        } else if (paymentMethod === "card") {
+            document.getElementById("card_section").style.display = "block";
+        } else if (paymentMethod === "net_banking") {
+            document.getElementById("net_banking_section").style.display = "block";
+        } else if (paymentMethod === "wallet") {
+            document.getElementById("wallet_section").style.display = "block";
+        }
+    });
+
+    // Trigger the change event to show default section (UPI)
+    document.getElementById("payment_method").dispatchEvent(new Event("change"));
+</script>
+</body>
+</html>
+   
+       
