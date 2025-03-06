@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .info {
+            font-size: 16px;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        .loading {
+            text-align: center;
+        }
+        .loading img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Processing Payment</h1>
+    <div class="loading">
+        <img src="https://i.gifer.com/VAyR.gif" alt="loading"> <!-- Loading spinner -->
+        <p>Processing your payment... Please wait.</p>
+    </div>
+</div>
+
+<script>
+    // Simulate form submission and payment processing
+    setTimeout(function() {
+        // Assuming we got the response from the server here:
+        const paymentStatus = "success";  // Simulating a success response
+
+        if (paymentStatus === "success") {
+            window.location.href = "payment_success.html"; // Redirect to success page
+        } else {
+            window.location.href = "payment_failure.html"; // Redirect to failure page
+        }
+    }, 3000); // Simulate 3 seconds of processing time
+</script>
+
+</body>
+</html>
